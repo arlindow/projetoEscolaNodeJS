@@ -4,7 +4,7 @@ const conecta = async ()=> {
     
     const mysql = require('mysql2/promise')
 
-    const con = mysql.createConnection("mysql://root:@25661Cc@localhost:3306/escola")
+    const con = mysql.createConnection("mysql://root:??????@localhost:3306/escola")
 
     console.log('Conexão efetuada com sucesso!')
 
