@@ -1,3 +1,4 @@
+/*
 (async () => {
     
     const db= require('./services/alunoService')
@@ -10,7 +11,7 @@
     console.log('Aluno de id n°: ' + id + ' excluido com sucesso');
 
 })(); 
-
+*/
 
 /*
 (async () => {
