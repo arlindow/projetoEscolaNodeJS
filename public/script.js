@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         
         const aluno = {
+            id: document.getElementById('id').value,
             nome: document.getElementById('nome').value,
             turma: document.getElementById('turma').value,
             telefone: document.getElementById('telefone').value,
@@ -34,17 +35,20 @@ document.addEventListener('DOMContentLoaded', () => {
         alunos.forEach(aluno => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${aluno.id}</td>
+                <td>${aluno.idaluno}</td>
                 <td>${aluno.nome}</td>
                 <td>${aluno.turma}</td>
                 <td>${aluno.telefone}</td>
                 <td class="actions">
-                    <button onclick="editAluno(${aluno.id})">Editar</button>
-                    <button class="delete" onclick="deleteAluno(${aluno.id})">Excluir</button>
+                    <button class="edit" data-id="${aluno.idaluno}">Editar</button>
+                    <button class="delete" data-id="${aluno.idaluno}">Excluir</button>
                 </td>
             `;
             alunoTableBody.appendChild(row);
         });
+
+        // Adiciona eventos de clique aos botões "Editar" e "Excluir"
+        addEventListeners();
     }
 
     async function getAllAlunos() {
@@ -79,17 +83,36 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAlunos();
     }
 
+    // Adiciona eventos de clique aos botões "Editar" e "Excluir"
+    function addEventListeners() {
+        const editButtons = document.querySelectorAll('.edit');
+        editButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                const alunoId = button.dataset.id;
+                await window.editAluno(alunoId);
+            });
+        });
+
+        const deleteButtons = document.querySelectorAll('.delete');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                const alunoId = button.dataset.id;
+                await deleteAluno(alunoId);
+            });
+        });
+    }
+
     window.editAluno = async (id) => {
         const aluno = await fetch(`/api/alunos/${id}`).then(res => res.json());
-        document.getElementById('alunoId').value = aluno.id;
+        document.getElementById('id').value = aluno.idaluno;
         document.getElementById('nome').value = aluno.nome;
         document.getElementById('turma').value = aluno.turma;
         document.getElementById('telefone').value = aluno.telefone;
-        editingId = aluno.id;
+        editingId = aluno.idaluno;
     };
 
     function resetForm() {
-        document.getElementById('alunoId').value = '';
+        document.getElementById('id').value = '';
         document.getElementById('nome').value = '';
         document.getElementById('turma').value = '';
         document.getElementById('telefone').value = '';

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+    background-color: #571e1e;
     margin: 0;
     padding: 0;
 }
@@ -9,7 +9,7 @@ body {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #9e9797;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -33,11 +33,12 @@ form div {
 form label {
     margin-bottom: 5px;
     color: #333;
+    font-weight: bold;
 }
 
 form input {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #746c6c;
     border-radius: 4px;
 }
 
@@ -67,7 +68,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #f4f4f4;
+    background-color: #c75528;
 }
 
 .actions {
